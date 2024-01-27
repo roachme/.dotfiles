@@ -1,0 +1,8 @@
+
+function task()
+{
+    CWD=$(pwd)
+    cd /home/roach/work/sketch/workflow
+    lua task.lua $@
+    cd $CWD
+}
