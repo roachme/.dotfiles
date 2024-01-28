@@ -1,0 +1,10 @@
+[ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
+[ -s ~/.luaver/completions/luaver.bash ] && . ~/.luaver/completions/luaver.bash
+
+function task()
+{
+    CWD=$(pwd)
+    cd /home/roach/roach/prjs/task
+    lua task.lua $@
+    cd $CWD
+}
