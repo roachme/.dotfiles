@@ -4,3 +4,4 @@
 [submodule "nvim/.config/nvim"]
 	path = nvim/.config/nvim
 	url = git@github.com:roachme/nvim.git
+	branch = master
