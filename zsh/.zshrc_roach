@@ -14,3 +14,6 @@ function task()
 
 alias dev="sshpass -p isbetter ssh dev"
 alias cli="sshpass -p wimark ssh -p 51954 wimark@192.168.0.100"
+
+# Set russion layout
+setxkbmap -layout "real-prog-dvorak,ru" -option grp:lwin_toggle
