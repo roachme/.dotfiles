@@ -1,0 +1,88 @@
+#!/bin/bash
+
+# Deps:
+# sudo apt install snmp
+
+# snmpwalk throw errors on internal and Wimark OID/ MIBs
+# sudo apt install snmp-mibs-downloader
+
+
+# Warning: change this values for your needs
+COMMINITY="public"      # comminity string
+IPADDR="192.168.0.100"  # AP IP address
+
+
+
+function usage() {
+    cat << EOF
+COMMANDS:
+    check       - Check SNMP agent is up and running
+    system      - Show system OID range values
+    cpe         - Show cpe OID range values
+    wireless    - Show wifi OID range values
+
+OPTIONS:
+    -n          - Displays the OID numerically
+    -h          - Show this help message
+EOF
+}
+
+OPT_OUTPUT="-Oa" # show ASCII
+while getopts ":nhv" opt; do
+    case "$opt" in
+        n)
+            OPT_OUTPUT="-On" # show numeric
+            ;;
+        h)
+            usage
+            exit 0
+            ;;
+        v)
+            OPT_OUTPUT="-Ov" # show ASCII
+            ;;
+    esac
+done
+shift $(( OPTIND - 1 ))
+
+# Options
+OPT_COMM="-Cp"   # print the number of variables found
+OPTS="${OPT_OUTPUT} ${OPT_COMM} -v 2c"
+
+# Values
+CPE_OID_RANGE=".1.3.6.1.4.1.52400.2.1"
+WIFI_OID_RANGE=".1.3.6.1.4.1.52400.2.3"
+OPT_LIST="CPE-SYSTEM-MIB:CPE-WIRELESS-MIB:WIMARK-ID-REC-MIB"
+
+# Form a complete command
+SNMPCMD="snmpwalk $OPTS -c $COMMINITY -v 1 -m $OPT_LIST $IPADDR"
+
+
+
+
+
+function main()
+{
+    # default: list all range OID
+    if [ -z "$1" ]; then
+        $SNMPCMD .
+    elif [ "$1" = "check" ]; then
+        snmp-check -v2c -c $COMMINITY $IPADDR
+        # roachme:
+        # 1. Set timeout value when tryng to connect to SNMP daemon
+        # 2. Output status depending on command above
+        #echo "Status: SNMP daemon is up and running on target $IPADDR"
+
+    elif [ "$1" = "system" ]; then
+        $SNMPCMD system
+    elif [ "$1" = "cpe" ]; then
+        $SNMPCMD cpe
+    elif [ "$1" = "wireless" ]; then
+        $SNMPCMD wireless
+    else
+        usage
+    fi
+}
+
+main $@
+
+#snmpwalk -v 2c -c public -v 1 -m CPE-SYSTEM-MIB:CPE-WIRELESS-MIB:WIMARK-ID-REC-MIB 192.168.0.100 .
