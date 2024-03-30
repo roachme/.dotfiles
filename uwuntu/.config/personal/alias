@@ -40,3 +40,4 @@ alias mynpm='rm ~/.npmrc'
 
 # roach changes
 alias openwrt="docker run -v ~/work/docker_openwrt:/root -it wimark-docker-firmware-builder /bin/bash"
+alias dir="dir --color"
