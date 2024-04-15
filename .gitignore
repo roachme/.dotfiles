@@ -1,4 +1,9 @@
+# bin stuff
 bin/.local/bin
 !bin/.local/bin/twitch-chat
 
+# nvim stuff
 nvim/.config/nvim/plugin/packer_compiled.lua
+
+# tmux stuff
+tmux/.config/tmux/plugins/
