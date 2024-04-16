@@ -1,0 +1,32 @@
+#!/bin/bash
+
+function system()
+{
+    sudo apt install npm sshpass -y
+}
+
+function nvim()
+{
+    local packerpath="$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim"
+
+    if [[ -d "$packerpath" ]]; then
+        echo "packer: already installed"
+    else
+        git clone --depth 1 https://github.com/wbthomason/packer.nvim "$packerpath"
+    fi
+}
+
+function tmux()
+{
+    local tpmpath="$XDG_CONFIG_HOME/tmux/plugins/tpm"
+    git clone https://github.com/tmux-plugins/tpm "$tpmpath"
+
+    # restore by default tmux session setup
+    mkdir -p "$HOME/.local/share/tmux/resurrect"
+    cp tmux/tmux_resurrect_20240313T100900.txt ~/.local/share/tmux/resurrect
+    rm ~/.local/share/tmux/resurrect/last
+    ln -s ~/.dotfiles/tmux/tmux_resurrect_20240313T100900.txt ~/.local/share/tmux/resurrect/last
+}
+
+nvim
+tmux
