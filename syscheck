@@ -1,0 +1,24 @@
+#!/bin/bash
+
+SYSCMDS="stow lua nvim"
+
+
+function syscheck()
+{
+    local checkflag=true
+
+    echo "Utils missing on the system:"
+    for util in ${SYSCMDS[@]}; do
+        which -s "$util"
+        if [[ $? -ne 0 ]]; then
+            echo " * $util"
+            checkflag=false
+        fi
+    done
+    if [[ "$checkflag" == true ]]; then
+        echo "  None"
+    fi
+}
+
+syscheck
+
