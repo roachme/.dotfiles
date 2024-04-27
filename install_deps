@@ -2,7 +2,12 @@
 
 function system()
 {
-    sudo apt install npm sshpass -y
+    sudo apt install docker.io npm sshpass fzf -y
+
+    # https://www.kali.org/docs/containers/installing-docker-on-kali
+    # Add myself to docker group to not use sudo
+    # Looks like you gotta restart machine
+    sudo usermod -aG docker $(whoami)
 }
 
 function nvim()
@@ -28,5 +33,6 @@ function tmux()
     ln -s ~/.dotfiles/tmux/tmux_resurrect_20240313T100900.txt ~/.local/share/tmux/resurrect/last
 }
 
+system
 nvim
 tmux
