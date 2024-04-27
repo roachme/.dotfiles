@@ -1,7 +1,6 @@
 #!/bin/bash
 
-SYSCMDS="stow lua nvim"
-
+SYSCMDS="stow lua nvim git"
 
 function syscheck()
 {
@@ -16,9 +15,10 @@ function syscheck()
         fi
     done
     if [[ "$checkflag" == true ]]; then
-        echo "  None"
+        printf "  None\n\n"
+        exit 0
     fi
+    exit 1
 }
 
 syscheck
-

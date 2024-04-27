@@ -1,0 +1,45 @@
+#!/bin/bash
+
+STOW_PKGS="awesomewm bin git i3 nvim tmux tree-sitter uwuntu vim-2022 wd xkb zsh"
+
+function stow_config()
+{
+    for package in ${STOW_PKGS[@]}; do
+        echo "stow $package"
+        stow -D -t "$HOME" "$package"
+        stow -t "$HOME" "$package"
+    done
+}
+
+function unstow_config()
+{
+    for package in ${STOW_PKGS[@]}; do
+        echo "unstow $package"
+        stow -D -t "$HOME" "$package"
+    done
+}
+
+function usage()
+{
+    cat << EOF
+Usage: ./config [INSTALL|CLEAN]
+EOF
+}
+
+# check necessary utils on the system
+./syscheck
+if [[ $? -ne 0 ]]; then
+    exit 1
+fi
+
+
+if [[ "$1" == "install" ]]; then
+    echo "install"
+    stow_config
+elif [[ "$1" == "clean" ]]; then
+    echo "clean"
+    unstow_config
+else
+    usage
+fi
+
