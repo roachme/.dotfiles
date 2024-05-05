@@ -24,3 +24,7 @@ ssh-add -q ~/.ssh/roach_github
 
 # roach utils
 . ~/personal/prjs/tman/shell.sh
+
+# minicom
+export MINICOM="-c on"
+alias minicom="minicom roach_dft"

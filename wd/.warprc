@@ -1,7 +1,9 @@
 code:~/work/tman/codebase
 creden:~/personal/data/creden
+d:~/d
 dot:~/.dotfiles
 lab:~/work/tman/tasks/30941125/lab
+nvim:~/.dotfiles/nvim/.config/nvim
 setup:~/personal/prjs/setup
 sketch:~/work/sketch
 task:~/work/tman/tasks/30941125
