@@ -4,14 +4,6 @@ bindkey -M viins 'jk' vi-cmd-mode # map jk to Esc
 [ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
 [ -s ~/.luaver/completions/luaver.bash ] && . ~/.luaver/completions/luaver.bash
 
-function task()
-{
-    CWD=$(pwd)
-    cd /home/roach/roach/prjs/task
-    lua task.lua $@
-    cd $CWD
-}
-
 alias dev="sshpass -p isbetter ssh dev"
 alias cli="sshpass -p wimark ssh -p 51954 wimark@192.168.0.100"
 
