@@ -20,3 +20,4 @@ ssh-add -q ~/.ssh/roach_github
 # minicom
 export MINICOM="-c on"
 alias minicom="minicom roach_dft"
+alias kali="docker run -it kali"
