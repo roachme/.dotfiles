@@ -15,7 +15,7 @@ ssh-add -q ~/.ssh/amonov@wm-dev_id_rsa
 ssh-add -q ~/.ssh/roach_github
 
 # roach utils
-. ~/personal/prjs/tman/shell.sh
+. ~/personal/prjs/toolkit/tman/shell.sh
 
 # minicom
 export MINICOM="-c on"
