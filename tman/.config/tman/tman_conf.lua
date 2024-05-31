@@ -5,19 +5,20 @@ TMANInstall = "~/personal/prjs/toolkit/tman"
 
 -- User vars.
 local repos = {
-    { name = "lede-feeds", branch = "develop", path = nil },
-    { name = "cpeagent", branch = "master", path = nil },
-    { name = "wmsnmpd", branch = "master", path = nil },
     { name = "wtm", branch = "master", path = nil },
+    { name = "wmsnmpd", branch = "master", path = nil },
+    { name = "cpeagent", branch = "master", path = nil },
+    { name = "lede-feeds", branch = "develop", path = nil },
 }
 
 local struct = {
     dirs = { "logs", "lab" },
-    files = { "note" },
+    files = { "note", "tmp" },
 }
 
--- Define a pattern how to name branches.
-local branchpatt = ""
+--- Define a pattern how to name branch.
+-- Under development.
+local branchpatt = "${TYPE}/${ID}_${DESC}_${TIME}"
 
 
 return {
