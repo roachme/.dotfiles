@@ -21,3 +21,5 @@ ssh-add -q ~/.ssh/roach_github
 export MINICOM="-c on"
 alias minicom="minicom roach_dft"
 alias kali="docker run -it kali"
+alias aoeu="setxkbmap -layout "us,ru" -option grp:lwin_toggle"
+alias browser="$(which /usr/bin/thorium-browser)"
