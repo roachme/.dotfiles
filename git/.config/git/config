@@ -8,8 +8,13 @@
 [init]
     defaultBranch = master
 
+[credential]
+	helper = store
+
+# REuse REcorded REsolution (to automatically resolve conflicts)
+[rerere]
+	enabled = true
+
 [includeIf "gitdir:~/work/"]
     path = ~/work/.gitconfig
 
-[credential]
-	helper = store
