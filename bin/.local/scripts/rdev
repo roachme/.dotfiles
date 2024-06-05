@@ -1,0 +1,43 @@
+#!/bin/bash
+
+
+DEVIP="192.168.0.100"
+DEVOPTS=
+DEVPORT="51954"
+DEVPASS="isbetter"
+DEVCONF="$(pwd)/rdev.conf"
+
+
+CMD="$1"
+MYSRC="$2"
+DEVDST="$3"
+
+function usage()
+{
+    cat << EOF
+Usage: rdev CMD [SRC DST]
+EOF
+}
+
+
+if [ -f "$DEVCONF" ]; then
+    echo "read local config for device"
+    source "$DEVCONF"
+fi
+
+
+echo "DEVIP: $DEVIP"
+
+
+DEVSSH="sshpass -p $DEVPASS ssh ${DEVOPTS} -p ${DEVPORT} root@${DEVIP}"
+DEVSCP="sshpass -p $DEVPASS scp -O -r ${DEVOPTS} -P ${DEVPORT} ${MYSRC} root@${DEVIP}:${DEVDST}"
+
+
+if [ -z "$CMD" ]; then
+    $DEVSSH
+elif [ "$CMD" == "scp" ]; then
+    echo "copy file from/to"
+else
+    usage
+fi
+

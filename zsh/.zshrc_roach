@@ -4,7 +4,6 @@ bindkey -M viins 'jk' vi-cmd-mode # map jk to Esc
 [ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
 [ -s ~/.luaver/completions/luaver.bash ] && . ~/.luaver/completions/luaver.bash
 
-alias dev="sshpass -p isbetter ssh dev"
 alias cli="sshpass -p wimark ssh -p 51954 wimark@192.168.0.100"
 
 # Set russion layout
@@ -20,6 +19,7 @@ ssh-add -q ~/.ssh/roach_github
 # minicom
 export MINICOM="-c on"
 alias minicom="minicom roach_dft"
+
 alias kali="docker run -it kali"
 alias aoeu="setxkbmap -layout "us,ru" -option grp:lwin_toggle"
 alias browser="$(which /usr/bin/thorium-browser)"

@@ -1,0 +1,44 @@
+#!/bin/bash
+
+set -x
+
+AP_IPADDR="10.30.40.96"
+AP_PASSWORD="isbetter"
+AP_BASE_DIR="/tmp/roach"
+
+AP_SSH_WRAPPER="-oStrictHostKeyChecking=no -oHostKeyAlgorithms=+ssh-rsa -p 51954 root@$AP_IPADDR"
+AP_SCP_WRAPPER="-O -oStrictHostKeyChecking=no -oHostKeyAlgorithms=+ssh-rsa -P 51954 root@$AP_IPADDR"
+
+
+function ap_update()
+{
+    echo "Update: update statics and part of the project"
+}
+
+function ap_restart()
+{
+    echo "Restart: restart services if needed"
+}
+
+function ap_log()
+{
+    local pattern="$1"
+    echo "Log: show logs"
+
+    if [ -n "$pattern" ]; then
+        sshpass -p $AP_PASSWORD ssh $AP_SSH_WRAPPER "logread -e $pattern"
+    fi
+}
+
+function ap_get()
+{
+    echo "Get: get logs and files from /tmp/roach on AP"
+    sshpass -p $AP_PASSWORD scp $AP_SCP_WRAPPER:${AP_BASE_DIR}/* ap_logs
+}
+
+
+if [ "$1" == "log" ]; then
+    ap_log "$2"
+elif [ "$1" == "get" ]; then
+    ap_get
+fi
