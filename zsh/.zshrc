@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode wd)
+plugins=(git vi-mode wd git-commit)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -138,3 +138,4 @@ unset __conda_setup
 
 # roach settings
 source ~/.dotfiles/zsh/.zshrc_roach
+source /home/roach/personal/prjs/toolkit/tman/tman.sh
