@@ -1,0 +1,33 @@
+{
+    "work": {
+        "struct": {
+            "dirs": [ "logs", "lab", "sketch" ],
+            "files": [ "notes", "tmp" ]
+        },
+        "git": {
+            "dirbase": "repos",
+            "commitpatt": "[ID] PART: MSG",
+            "branchpatt": "TYPE/ID_DESC_DATE",
+            "repos": [
+                { "name": "wtm", "branch": "master","link": "git@gitlab.wimark.com:embedded/wtm.git", "path": "" },
+                { "name": "wmsnmpd", "branch": "master","link": "git@gitlab.wimark.com:embedded/wmsnmpd.git", "path": "" },
+                { "name": "cpeagent", "branch": "master","link": "git@gitlab.wimark.com:embedded/cpeagent.git", "path": "" },
+                { "name": "lede-feeds", "branch": "master","link": "git@gitlab.wimark.com:embedded/lede-feeds.git", "path": "" }
+            ]
+        }
+    },
+    "test": {
+        "struct": {
+            "dirs": [ "logs", "lab", "sketch" ],
+            "files": [ "notes", "tmp", "tmp2" ]
+        },
+        "git": {
+            "dirbase": "repos",
+            "commitpatt": "[ID] PART: MSG",
+            "branchpatt": "TYPE/ID_DESC_DATE",
+            "repos": [
+                { "name": "wtm", "branch": "master","link": "git@gitlab.wimark.com:embedded/wtm.git", "path": "" }
+            ]
+        }
+    }
+}
