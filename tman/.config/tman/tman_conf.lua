@@ -1,14 +1,8 @@
--- System vars: don't rename 'em, cuz bash script depends on these vars.
-TMANBase = "~/work/tman"
-TMANInstall = "~/personal/prjs/toolkit/tman"
-
-
--- User vars.
 local repos = {
-    { name = "wtm", branch = "master", path = nil },
-    { name = "wmsnmpd", branch = "master", path = nil },
-    { name = "cpeagent", branch = "master", path = nil },
-    { name = "lede-feeds", branch = "develop", path = nil },
+    { name = "wtm", branch = "master", link = nil, path = nil },
+    { name = "wmsnmpd", branch = "master", link = nil, path = nil },
+    { name = "cpeagent", branch = "master", link = nil, path = nil },
+    { name = "lede-feeds", branch = "develop", link = nil, path = nil },
 }
 
 local struct = {
@@ -16,14 +10,9 @@ local struct = {
     files = { "note", "tmp" },
 }
 
---- Define a pattern how to name branch.
--- Under development.
-local branchpatt = "${TYPE}/${ID}_${DESC}_${TIME}"
-
+local branchpatt = "TYPE/ID_DESC_DATE"
 
 return {
-    base = TMANBase,
-    install = TMANInstall,
     struct = struct,
     repos = repos,
     branchpatt = branchpatt,
