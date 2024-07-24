@@ -1,9 +1,6 @@
 # oh-my-zsh
 bindkey -M viins 'jk' vi-cmd-mode # map jk to Esc
 
-[ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
-[ -s ~/.luaver/completions/luaver.bash ] && . ~/.luaver/completions/luaver.bash
-
 # Set russion layout
 setxkbmap -layout "real-prog-dvorak,ru" -option grp:lwin_toggle
 
@@ -11,12 +8,11 @@ setxkbmap -layout "real-prog-dvorak,ru" -option grp:lwin_toggle
 ssh-add -q ~/.ssh/amonov@wm-dev_id_rsa
 ssh-add -q ~/.ssh/roach_github
 
-# roach utils
-. ~/personal/prjs/toolkit/tman/tman.sh
-
 # minicom
 export MINICOM="-c on"
 alias minicom="minicom roach_dft"
+export PATH=$PATH:$HOME/.local/bin
+alias vim="nvim"
 
 alias kali="docker run -it kali"
 alias aoeu="setxkbmap -layout "us,ru" -option grp:lwin_toggle"

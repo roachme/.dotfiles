@@ -1,12 +1,12 @@
 [core]
-    editor = nvim
+	editor = nvim
 
 [user]
-    name = roach
-    email = qcockroach6@gmail.com
+	name = roach
+	email = qcockroach6@gmail.com
 
 [init]
-    defaultBranch = master
+	defaultBranch = master
 
 [credential]
 	helper = store
@@ -16,5 +16,4 @@
 	enabled = true
 
 [includeIf "gitdir:~/work/"]
-    path = ~/work/.gitconfig
-
+	path = ~/work/.gitconfig
