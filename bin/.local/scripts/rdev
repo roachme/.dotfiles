@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+DEVCONF=".rdev.conf"
+
+test -f "$DEVCONF" && source "./${DEVCONF}"
+
+# Fill default values
+test -z "$DEVIP" && DEVIP="192.168.0.100"
+
+test -z "$DEVUSER" && DEVUSER="root"
+test -z "$DEVPORT" && DEVPORT=51954
+test -z "$DEVPASS" && DEVPASS="isbetter"
+test -z "$DEVDST" && DEVDST="/tmp/roach"
+
+
+CMD="$1";
+
+if [ -z "$CMD" ]; then
+    sshpass -p "${DEVPASS}" ssh -p "${DEVPORT}" "${DEVUSER}@${DEVIP}"
+elif [ "$CMD" = "from" ]; then
+    SRC="$2"; test -z "$SRC" && echo "from: missing: src file"
+    sshpass -p "${DEVPASS}" scp -r -O -P "${DEVPORT}" "${DEVUSER}@${DEVIP}:${SRC}" .
+elif [ "$CMD" = "to" ]; then
+    SRC="$2";
+    DST="$3"
+    if [ -z "$SRC" ]; then
+        echo "to: missing: src file"
+    fi
+    if [ -z "$DST" ]; then
+        DST="/tmp/roach"
+    fi
+    sshpass -p "${DEVPASS}" scp -r -O -P "${DEVPORT}" "$SRC" "${DEVUSER}@${DEVIP}:${DST}"
+elif [ "$CMD" = "cli" ]; then
+    DEVUSER="wimark"
+    DEVPASS="wimark"
+    sshpass -p "${DEVPASS}" ssh -p "${DEVPORT}" "${DEVUSER}@${DEVIP}"
+else
+    sshpass -p "${DEVPASS}" ssh -p "${DEVPORT}" "${DEVUSER}@${DEVIP}" "$@"
+fi

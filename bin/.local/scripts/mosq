@@ -1,0 +1,231 @@
+#!/usr/bin/env bash
+
+PROGRAM="mosq"
+VERBOSE="-v"
+FILECONF=".mosq.conf"
+
+# default values
+PLATFORM="dev.wimark.com"
+UUID="07cf3e8e-ec26-3298-c96b-44d1faac9f4d"
+
+
+OBJ=
+CMD=
+
+OBJECTS=(event req res b)
+FUNCTIONS=(stat static preget config postget dup scan)
+
+
+function elog()
+{
+    echo "$PROGRAM:" "$@"
+}
+
+function usage()
+{
+    cat << EOF
+Usage: mosq [OPTION] OBJ CMD
+    Show mosquitto message for CPEAgent
+
+    Options:
+      -h    show this help and exit
+      -f    path to config file
+
+    Obojects:
+      event     event messages
+      req       request message coming from platform
+      res       response message going to platform
+      b         backend message (maybe?)
+
+    Commands:
+      req:
+        stat        request AP state
+        static      request list of statics
+        preget      request current AP state
+        config      send config files
+        postget     request updated AP state
+        dup         duplicate request of postget (?)
+
+      res:
+        stat        response with AP state
+        static      response with list of statics
+        preget      response with current AP state
+        config      response with applied config files
+        postget     response with updated AP state
+        dup         response with duplicate request of postget (?)
+
+    Examples:
+        $ mosq req preget     # get current AP state
+        $ mosq res config     # get response to applied config files
+EOF
+    return 0;
+}
+
+function generic_show()
+{
+    INDEX=1
+    INDEX_INFO="$1"
+    TOPIC="$2"
+    VERBOSE="$3"
+
+    mosquitto_sub -h "$PLATFORM" "$VERBOSE" -t "$TOPIC" | \
+        while read -r line; do
+            if [ "$INDEX" -eq "$INDEX_INFO" ]; then
+                TOPIC="$(echo "$line" | cut -f 1 -d ' ')"
+                MSG="$(echo "$line" | cut -f 2- -d ' ')"
+                echo "TOPIC: $TOPIC"
+                echo "$MSG" | jq
+                break
+            fi
+            INDEX=$((INDEX + 1))
+        done
+    return 0;
+}
+
+
+
+
+### REQ commands: BEGIN ###
+
+function req_state()
+{
+    generic_show 1 "REQ/CONFIG//CPE/$UUID/+/JSONRPC/" "$VERBOSE"
+}
+
+function req_static()
+{
+    generic_show 2 "REQ/CONFIG//CPE/$UUID/+/JSONRPC/" "$VERBOSE"
+}
+
+# Get AP status before config update
+function req_preget()
+{
+    generic_show 3 "REQ/CONFIG//CPE/$UUID/+/JSONRPC/" "$VERBOSE"
+}
+
+# Send configs to AP
+function req_config()
+{
+    generic_show 4 "REQ/CONFIG//CPE/$UUID/+/JSONRPC/" "$VERBOSE"
+}
+
+# Get AP status after config update
+function req_postget()
+{
+    generic_show 5 "REQ/CONFIG//CPE/$UUID/+/JSONRPC/" "$VERBOSE"
+}
+
+# No clue, looks like a 5-th duplicate
+function req_postget_dup()
+{
+    generic_show 6 "REQ/CONFIG//CPE/$UUID/+/JSONRPC/" "$VERBOSE"
+}
+
+function req_scan()
+{
+    # TODO: complete it
+    local TOPIC="REQ/CPE/$UUID/DB//+/C/cpe-scan-data"
+    mosquitto_sub "$VERBOSE" -h "$PLATFORM" -t "$TOPIC"
+    #generic_show 6 "REQ/CPE/$UUID/DB//+/C/cpe-scan-data" "$VERBOSE"
+}
+
+### REQ commands: END ###
+
+
+### RES commands: BEGIN ###
+
+function res_stat()
+{
+    generic_show 1 "RSP/CPE/$UUID/CONFIG//#" "$VERBOSE"
+}
+
+function res_static()
+{
+    generic_show 2 "RSP/CPE/$UUID/CONFIG//#" "$VERBOSE"
+}
+
+# Get AP status before config update
+function res_preget()
+{
+    generic_show 3 "RSP/CPE/$UUID/CONFIG//#" "$VERBOSE"
+}
+
+# Send configs to AP
+function res_config()
+{
+    generic_show 4 "RSP/CPE/$UUID/CONFIG//#" "$VERBOSE"
+}
+
+# Get AP status after config update
+function res_postget()
+{
+    generic_show 5 "RSP/CPE/$UUID/CONFIG//#" "$VERBOSE"
+}
+
+# No clue, looks like a 5-th duplicate
+function res_postget_dup()
+{
+    generic_show 6 "RSP/CPE/$UUID/CONFIG//#" "$VERBOSE"
+}
+
+### RES commands: END ###
+
+
+
+### Interface ###
+
+while getopts ":hp:vu:" opt; do
+    case "${opt}" in
+        h)
+            usage
+            exit
+            ;;
+        p)
+            PLATFORM="$OPTARG"
+            break
+            ;;
+        v)
+            # TODO: used always otherwise generic_show() parser fails
+            VERBOSE="-v"
+            ;;
+        u)
+            UUID="$OPTARG"
+            break
+            ;;
+        *)
+            usage
+            exit
+            ;;
+    esac
+done
+
+
+# Load config values if config file exists
+[ -f "$FILECONF" ] && source "$FILECONF"
+
+
+shift $((OPTIND - 1))
+OBJ="$1"
+CMD="$2"
+
+if [ -z "$OBJ" ]; then
+    elog "err: OBJ missing"
+    exit 1
+elif [ -z "$CMD" ]; then
+    elog "err: CMD missing"
+    exit 1
+fi
+
+if [ "$OBJ" = "req" ] || [ "$OBJ" = "res" ]; then
+    for func in "${FUNCTIONS[@]}"; do
+        if [ "$CMD" = "$func" ]; then
+            eval "${OBJ}_$func"
+            exit $?;
+        fi
+    done
+    elog "$OBJ: no such command '$CMD'"
+    exit 1
+
+elif [ "$OBJ" = "help" ]; then
+    usage
+fi
