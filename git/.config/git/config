@@ -1,16 +1,16 @@
 [core]
 	editor = nvim
 
-# roachme: it's wrong cuz I sign my projects with work email
 [user]
     name = Amonov Hurshed
-    email = amonov@wimark.com
+    email = qcockroach6@gmail.com
 
 [init]
 	defaultBranch = master
 
 [credential]
-	helper = store
+    username = roachme
+    helper = "!f() { test \"$1\" = get && echo \"password=$(pass ootheca/gittoken)\"; }; f"
 
 # REuse REcorded REsolution (to automatically resolve conflicts)
 [rerere]
