@@ -1,0 +1,53 @@
+pane	personal	1	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	personal	2	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	personal	3	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	personal	4	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	personal	5	0	:-	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	personal	9	1	:*	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	remote	1	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	remote	2	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	remote	3	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	remote	4	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	remote	5	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	remote	6	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	remote	7	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	remote	8	0	:-	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	remote	9	1	:*	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	remote	10	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	work	0	1	:*	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	work	1	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	work	2	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	work	3	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	work	4	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	work	5	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	work	6	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	work	7	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	work	8	0	:	0	roach@roach:~	:/home/roach	1	zsh	:
+pane	work	9	0	:-	0	roach@roach:~	:/home/roach	1	zsh	:
+window	personal	1	:zsh	0	:	cd3e,157x38,0,0,1	:
+window	personal	2	:hack	0	:	cd3f,157x38,0,0,2	off
+window	personal	3	:nvim	0	:	cd40,157x38,0,0,3	off
+window	personal	4	:term	0	:	cd41,157x38,0,0,4	off
+window	personal	5	:zsh	0	:-	cd42,157x38,0,0,5	:
+window	personal	9	:zsh	1	:*	cd43,157x38,0,0,6	:
+window	remote	1	:zsh	0	:	cd44,157x38,0,0,7	:
+window	remote	2	:rdev	0	:	cd45,157x38,0,0,8	off
+window	remote	3	:rserv	0	:	cd46,157x38,0,0,9	off
+window	remote	4	:zsh	0	:	66cf,157x38,0,0,10	:
+window	remote	5	:zsh	0	:	66d0,157x38,0,0,11	:
+window	remote	6	:zsh	0	:	66d1,157x38,0,0,12	:
+window	remote	7	:zsh	0	:	66d2,157x38,0,0,13	:
+window	remote	8	:zsh	0	:-	66d3,157x38,0,0,14	:
+window	remote	9	:zsh	1	:*	66d4,157x38,0,0,15	:
+window	remote	10	:zsh	0	:	66d5,157x38,0,0,16	:
+window	work	0	:docker	1	:*	66d6,157x38,0,0,17	off
+window	work	1	:dev	0	:	66d7,157x38,0,0,18	off
+window	work	2	:dev	0	:	66d8,157x38,0,0,19	off
+window	work	3	:nvim	0	:	e6cf,157x38,0,0,20	off
+window	work	4	:term	0	:	e6d0,157x38,0,0,21	off
+window	work	5	:zsh	0	:	e6d1,157x38,0,0,22	:
+window	work	6	:zsh	0	:	e6d2,157x38,0,0,23	:
+window	work	7	:zsh	0	:	e6d3,157x38,0,0,24	:
+window	work	8	:wserv	0	:	e6d4,157x38,0,0,25	off
+window	work	9	:sketch	0	:-	e6d5,157x38,0,0,26	off
+state	work	remote

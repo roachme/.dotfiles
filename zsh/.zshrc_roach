@@ -1,0 +1,65 @@
+# oh-my-zsh
+bindkey -M viins 'jk' vi-cmd-mode # map jk to Esc
+
+# Desktop relative stuff
+if [ "$XDG_CURRENT_DESKTOP" = "i3" ]; then
+    setxkbmap -layout "real-prog-dvorak,ru" -option grp:lwin_toggle
+
+    # Super cool keyboard stuffs.
+    # Required for x applications
+    # roach: guess it's how to replace Caps Lock with Ctrl
+    setxkbmap -option caps:ctrl_modifier
+
+    #setxkbmap -option ctrl:swapcaps
+fi
+
+
+# minicom
+export MINICOM="-c on"
+alias minicom="minicom roach_dft"
+export PATH=$PATH:$HOME/.local/bin:/usr/local/go/bin
+alias vim="nvim"
+
+alias kali="docker run -it kali"
+alias aoeu="setxkbmap -layout "us,ru" -option grp:lwin_toggle"
+alias browser="$(which /usr/bin/thorium-browser)"
+
+# work docker
+alias wrt="distrobox enter wimark -- bash -c 'source /usr/share/rvm/scripts/rvm; exec bash'"
+
+export EDITOR="$(which nvim)"
+
+
+source /home/roach/workspace/.pgn/gun/tman/tman.sh
+
+
+# luaver
+[ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
+[ -s ~/.luaver/completions/luaver.bash ] && . ~/.luaver/completions/luaver.bash
+
+export PATH=$PATH:/home/roach/.cargo/bin
+
+
+# roach hotfix for ssh agent&keys
+if [ -z "$(ps aux | grep 'ssh-agent -s' | grep -v grep | awk '{print $11}')" ]; then
+    eval $(ssh-agent -s)
+fi
+
+ssh-add -q ~/.ssh/personal
+
+# fzf help functions
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
+
+# For pass util
+XDG_DATA_HOME="/home/$USER/.local/share"
+export PASSWORD_STORE_ENABLE_EXTENSIONS=true
+export PASSWORD_STORE_EXTENSIONS_DIR=$XDG_DATA_HOME/password-store/.extensions
+export BASH_COMPLETION_USER_DIR=$XDG_DATA_HOME/bash-completion/completions
+
+# Copy file content to clipboard
+alias cb="xsel -b <"
+
+
+alias whatsapp="flatpak run com.gigitux.youp"

@@ -1,0 +1,111 @@
+#!/bin/bash
+
+# Deps:
+# sudo apt install snmp
+
+# snmpwalk throw errors on internal and Wimark OID/ MIBs
+# sudo apt install snmp-mibs-downloader
+#
+# MIB structure
+# https://blog.paessler.com/snmp-deep-dive-how-smi-contributes-to-snmp
+
+
+
+AGENT=""  # SNMP Agent IPADDR (located on AP)
+DIRLIST="+$(pwd)/mibs" # Add '+' so default SNMP MIBs used too
+MIBLIST="WIMARK-ID-REC-MIB:CPE-SYSTEM-MIB:CPE-WIRELESS-MIB:CPE-DEMO-MIB"
+COMMINITY="public"  # comminity string
+OPT_COMM="-Cp"      # print the number of variables found
+OPT_OUTPUT="-Oa" # show ASCII
+PROGNAME="snmptesting"
+
+
+function usage() {
+    cat << EOF
+Usage: $PROGNAME [OPTIONS] AGENT [[MODULE] [COMMAND]]
+
+Notes:
+    AGENT       - SNMP Agent IPADDR (located on AP)
+    COMMAND     - there's only one command for now: check. See below
+    MODULE      - what part of OID tree to get (default whole tree)
+
+MODULES:
+    system      - Show system objects
+    cpe         - Show cpe objects  (Wimark Systems extension)
+    wireless    - Show wifi objects (Wimark Systems extension)
+
+COMMANDS:
+    check       - Check SNMP agent is up and running
+
+OPTIONS:
+    -n          - Displays the OID numerically
+    -h          - Show this help message
+EOF
+}
+
+function parse_args()
+{
+    while getopts ":nh" opt; do
+        case "$opt" in
+            n)
+                OPT_OUTPUT="-On" # show numeric
+                ;;
+            h)
+                usage
+                exit 0
+                ;;
+            *)
+                echo "error: no such option '-$OPTARG'"
+                exit 1
+        esac
+    done
+
+    shift $(( OPTIND - 1 ))
+    AGENT="$1"
+    MODULE="$2"
+
+    if [ -z "$AGENT" ]; then
+        echo "error: AGENT missing. Use 'snmptesting -h' to get help."
+        exit 1
+    fi
+
+    check_module $MODULE
+
+    # Form a complete SNMPWalk command
+    OPTS="${OPT_OUTPUT} ${OPT_COMM} -v 1"
+    SNMPCMD="snmpwalk $OPTS -c $COMMINITY -m $MIBLIST -M $DIRLIST $AGENT"
+}
+
+function check_module()
+{
+    local argmod="$1"
+    local modules=(check cpe wireless system)
+
+    # no module specified, traverse a whole OID tree
+    if [[ -z "$argmod" ]]; then
+        MODULE="."
+        return
+    fi
+
+    for module in ${modules[@]}; do
+        if [[ "$module" == "$argmod" ]]; then
+            return
+        fi
+    done
+
+    echo "error: no such module '$argmod'. Use 'snmptesting -h' to get help."
+    exit 0
+}
+
+function main()
+{
+    parse_args $@
+
+    if [ "$MODULE" = "check" ]; then
+        snmp-check -v2c -c $COMMINITY $AGENT
+    else
+        $SNMPCMD $MODULE
+    fi
+}
+
+main $@

@@ -1,0 +1,20 @@
+[core]
+	editor = nvim
+
+# roachme: it's wrong cuz I sign my projects with work email
+[user]
+    name = Amonov Hurshed
+    email = amonov@wimark.com
+
+[init]
+	defaultBranch = master
+
+[credential]
+	helper = store
+
+# REuse REcorded REsolution (to automatically resolve conflicts)
+[rerere]
+	enabled = true
+
+#[includeIf "gitdir:~/work/"]
+#	path = ~/work/.gitconfig

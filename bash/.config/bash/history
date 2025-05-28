@@ -1,0 +1,7 @@
+rc edit
+rc
+cd trash/
+rc edit
+rc
+clear
+vim .config/bash/
