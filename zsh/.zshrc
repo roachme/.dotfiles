@@ -108,3 +108,5 @@ source ~/.zsh_profile
 
 # roach settings
 source ~/.zshrc_roach
+
+alias mutt="neomutt"

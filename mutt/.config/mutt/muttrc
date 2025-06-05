@@ -1,0 +1,29 @@
+set editor=`echo $EDITOR`
+
+set from = "qcockroach6@gmail.com"
+set realname = "Amonov Hurshed"
+set spoolfile = "imaps://imap.gmail.com/INBOX" # (if using IMAP)
+set smtp_url = "smtp://qcockroach6:clkvxnjhhxjkakgp@smtp.gmail.com:587" #(if using SMTP)
+
+set imap_user = "qcockroach6"
+set imap_pass = "`pass show ootheca/gmail_mutt`" # Or use an application-specific password
+
+
+# Remote Gmail folders
+set folder = "imaps://imap.gmail.com/"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set record = "+[Gmail]/Sent Mail"
+set trash = "+[Gmail]/Trash"
+
+
+# experiemental stuff
+set header_cache="~/.cache/mutt/cache/headers"
+set message_cachedir="~/.cache/mutt/cache/messages"
+
+set use_threads=reverse sort=date sort_aux=date
+
+# neonwolf-256.neomuttrc  + solarized-dark-256.neomuttrc  vombatidae.neomuttrc  zenburn.neomuttrc
+
+set timeout = 10
+source $HOME/.local/share/neomutt/colorschemes/zenburn.neomuttrc
