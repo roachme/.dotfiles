@@ -10,7 +10,7 @@
 
 [credential]
     username = roachme
-    helper = "!f() { test \"$1\" = get && echo \"password=$(pass ootheca/gittoken)\"; }; f"
+    helper = store
 
 # REuse REcorded REsolution (to automatically resolve conflicts)
 [rerere]
