@@ -110,3 +110,5 @@ source ~/.zsh_profile
 source ~/.zshrc_roach
 
 alias mutt="neomutt"
+
+[ -f "/home/roach/.ghcup/env" ] && . "/home/roach/.ghcup/env" # ghcup-env

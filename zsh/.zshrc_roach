@@ -30,7 +30,7 @@ alias wrt="distrobox enter wimark -- bash -c 'source /usr/share/rvm/scripts/rvm;
 export EDITOR="$(which nvim)"
 
 
-source /home/roach/workspace/.pgn/gun/tman/tman.sh
+source /home/roach/workspace/.pgn/gmux/tman/tman.sh
 
 
 # luaver
@@ -41,6 +41,7 @@ export PATH=$PATH:/home/roach/.cargo/bin
 
 
 # roach hotfix for ssh agent&keys
+# HOTFIX: find a better
 if [ -z "$(ps aux | grep 'ssh-agent -s' | grep -v grep | awk '{print $11}')" ]; then
     eval $(ssh-agent -s)
 fi
