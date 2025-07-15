@@ -1,0 +1,7 @@
+{
+    "repos": [
+        { "link": "https://github.com/roachme/tman-gmux.git" },
+        { "link": "https://github.com/roachme/tman-find.git" },
+        { "link": "https://github.com/roachme/tman-link.git" }
+    ]
+}
