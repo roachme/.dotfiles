@@ -11,6 +11,19 @@
       }
     ]
   },
+  "lab": {
+    "prefix": "LAB",
+    "branchpatt": "TYPE/PREFIX-ID_DESC_DATE",
+    "repos": [
+      {
+        "name": "demo",
+        "branch": "develop",
+        "commitpatt": "[ID] PART: MSG",
+        "link": "https://github.com/roachme/demo.git"
+      }
+    ]
+  },
+
   "prj1": {
     "prefix": "TEST",
     "branchpatt": "TYPE/PREFIX-ID_DESC_DATE",
