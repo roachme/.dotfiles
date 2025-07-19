@@ -27,3 +27,4 @@ set use_threads=reverse sort=date sort_aux=date
 
 set timeout = 10
 source $HOME/.local/share/neomutt/colorschemes/zenburn.neomuttrc
+

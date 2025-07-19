@@ -2,15 +2,14 @@
 	editor = nvim
 
 [user]
-    name = Amonov Hurshed
+	name = roachme
     email = qcockroach6@gmail.com
 
 [init]
 	defaultBranch = master
 
 [credential]
-    username = roachme
-    helper = store
+	helper = store
 
 # REuse REcorded REsolution (to automatically resolve conflicts)
 [rerere]

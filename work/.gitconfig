@@ -1,9 +1,0 @@
-[user]
-    name = Amonov Hurshed
-    email = amonov@wimark.com
-[maintenance]
-	repo = /home/roach/.workspace/tman/train/git/tman
-[credential]
-	helper = pass
-[core]
-	askPass = pass
