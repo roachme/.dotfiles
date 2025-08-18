@@ -30,7 +30,7 @@ alias wrt="distrobox enter wimark -- bash -c 'source /usr/share/rvm/scripts/rvm;
 export EDITOR="$(which nvim)"
 
 
-source /home/roach/workspace/.pgn/gmux/tman/tman.sh
+source /home/roach/workspace/.pgn/gmux/tec/tec.sh
 
 
 # luaver
@@ -62,5 +62,4 @@ export BASH_COMPLETION_USER_DIR=$XDG_DATA_HOME/bash-completion/completions
 # Copy file content to clipboard
 alias cb="xsel -b <"
 
-
-alias whatsapp="flatpak run com.gigitux.youp"
+fpath=($HOME/.zsh/completions $fpath)

@@ -1,6 +1,7 @@
 
 book:~/trash/roach/books/tech
 d:~/Downloads
-gmux:~/.local/lib/tman/pgn/gmux
-tman:~/workspace/.pgn/gmux/tman
+fsck:~/.local/lib/tman/pgn/fsck
+gmux:~/.local/lib/tec/pgn/gmux
+tec:~/workspace/.pgn/gmux/tec
 tr:~/trash

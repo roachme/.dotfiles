@@ -1,6 +1,6 @@
 #!/bin/bash
 
-STOW_PKGS=(awesomewm bin bash git i3 minicom mutt nvim tman tmux tree-sitter uwuntu wd work xkb zsh)
+STOW_PKGS=(awesomewm bin bash git i3 minicom mutt nvim tec tmux tree-sitter uwuntu wd work xkb zsh)
 
 function stow_pkgs()
 {

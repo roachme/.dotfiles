@@ -1,13 +1,13 @@
 {
-  "tman": {
+  "tec": {
     "prefix": "TMAN",
     "branchpatt": "TYPE/PREFIX-ID_DESC_DATE",
     "repos": [
       {
-        "name": "tman",
+        "name": "tec",
         "branch": "develop",
         "commitpatt": "[ID] PART: MSG",
-        "link": "https://github.com/roachme/tman.git"
+        "link": "https://github.com/roachme/tec.git"
       }
     ]
   },
@@ -24,7 +24,7 @@
     ]
   },
 
-  "prt1": {
+  "prj1": {
     "prefix": "TEST",
     "branchpatt": "TYPE/PREFIX-ID_DESC_DATE",
     "repos": [
