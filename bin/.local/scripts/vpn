@@ -1,0 +1,72 @@
+#!/bin/env bash
+
+PROGRAM="vpn"
+VPN_BASE="/etc/openvpn/client"
+
+die() {
+    echo "$PROGRAM: ""$@" >&2
+    exit 1
+}
+
+_config_exist() {
+    local cfg="$1"
+
+    if [ -z "$1" ]; then
+        die "no config is passed"
+    elif [ ! -f "$VPN_BASE/$cfg.conf" ]; then
+        die "'$cfg.conf': no such config"
+    fi
+}
+
+vpn_help() {
+    cat << EOF
+Usage: vpn COMMAND
+
+    Commands:
+      help      show this help message and exit
+      ls        list openvpn instances and configs
+      start     start openvpn instance
+      stop      stop openvpn instance
+EOF
+}
+
+vpn_ls() {
+    echo "List running openvpn instances"
+    sudo systemctl --type=service  | grep openvpn
+
+    echo
+    echo "List available openvpn configs"
+    ls /etc/openvpn/client/*.conf | tr -s ' ' | tr ' ' '\n'
+}
+
+vpn_start() {
+    local cfg="$1"
+
+    _config_exist "$cfg"
+    sudo systemctl start "openvpn-client@${cfg}.service"
+}
+
+vpn_stop() {
+    local cfg="$1"
+
+    _config_exist "$cfg"
+    sudo systemctl stop "openvpn-client@${cfg}.service"
+}
+
+vpn_switch() {
+    echo "start an openvpn"
+}
+
+vpn() {
+    local cmd=
+    [ $# -eq 0 ] && set -- "ls"; cmd="$1"
+    case "$cmd" in
+        ls)          shift; vpn_ls "$@" ;;
+        help)        shift; vpn_help "$@" ;;
+        start)       shift; vpn_start "$@" ;;
+        stop)        shift; vpn_stop "$@" ;;
+        switch)      shift; vpn_switch "$@" ;;
+        *)           die "'$cmd': no such vpn command"
+    esac
+}
+vpn "$@"

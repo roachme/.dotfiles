@@ -1,0 +1,12 @@
+#!/bin/env bash
+
+MOMITOR_COUNT="$(xrandr | grep -wc connected)"
+
+if [ "$MOMITOR_COUNT" -eq 2 ]; then
+    echo "Switch to external monitor"
+    xrandr --output HDMI-1 --primary
+    xrandr --output eDP-1 --off
+else
+    echo "Switch back to main monitor"
+    xrandr --output eDP-1 --auto
+fi
