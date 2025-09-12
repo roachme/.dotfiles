@@ -5,9 +5,39 @@
     "repos": [
       {
         "name": "tec",
-        "branch": "develop",
+        "branch": "master",
         "commitpatt": "[ID] PART: MSG",
         "link": "https://github.com/roachme/tec.git"
+      },
+      {
+        "name": "gmux",
+        "branch": "master",
+        "commitpatt": "[ID] PART: MSG",
+        "link": "https://github.com/roachme/tec-gmux.git"
+      },
+      {
+        "name": "pgm",
+        "branch": "master",
+        "commitpatt": "[ID] PART: MSG",
+        "link": "https://github.com/roachme/tec-pgm.git"
+      },
+      {
+        "name": "arch",
+        "branch": "master",
+        "commitpatt": "[ID] PART: MSG",
+        "link": "https://github.com/roachme/tec-arch.git"
+      },
+      {
+        "name": "note",
+        "branch": "master",
+        "commitpatt": "[ID] PART: MSG",
+        "link": "https://github.com/roachme/tec-note.git"
+      },
+      {
+        "name": "find",
+        "branch": "master",
+        "commitpatt": "[ID] PART: MSG",
+        "link": "https://github.com/roachme/tec-find.git"
       }
     ]
   },
