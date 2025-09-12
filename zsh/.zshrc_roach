@@ -20,23 +20,19 @@ alias minicom="minicom roach_dft"
 export PATH=$PATH:$HOME/.local/bin:/usr/local/go/bin
 alias vim="nvim"
 
-alias kali="docker run -it kali"
 alias aoeu="setxkbmap -layout "us,ru" -option grp:lwin_toggle"
 alias browser="$(which /usr/bin/thorium-browser)"
 
-# work docker
-alias wrt="distrobox enter wimark -- bash -c 'source /usr/share/rvm/scripts/rvm; exec bash'"
-
-export EDITOR="$(which nvim)"
 
 
-source /home/roach/workspace/.pgn/gmux/tec/tec.sh
+source $HOME/workspace/.pgn/gmux/tec/tec
 
 
 # luaver
 [ -s ~/.luaver/luaver ] && . ~/.luaver/luaver
 [ -s ~/.luaver/completions/luaver.bash ] && . ~/.luaver/completions/luaver.bash
 
+export EDITOR="$(which nvim)"
 export PATH=$PATH:/home/roach/.cargo/bin
 
 
@@ -46,7 +42,8 @@ if [ -z "$(ps aux | grep 'ssh-agent -s' | grep -v grep | awk '{print $11}')" ]; 
     eval $(ssh-agent -s)
 fi
 
-ssh-add -q ~/.ssh/personal
+[ -f ~/.ssh/yadro ] && ssh-add -q ~/.ssh/yadro
+[ -f ~/.ssh/personal ] && ssh-add -q ~/.ssh/personal
 
 # fzf help functions
 source /usr/share/doc/fzf/examples/key-bindings.zsh
@@ -60,6 +57,10 @@ export PASSWORD_STORE_EXTENSIONS_DIR=$XDG_DATA_HOME/password-store/.extensions
 export BASH_COMPLETION_USER_DIR=$XDG_DATA_HOME/bash-completion/completions
 
 # Copy file content to clipboard
-alias cb="xsel -b <"
+alias cb="xclip -selection clipboard < "
 
 fpath=($HOME/.zsh/completions $fpath)
+
+
+# Tell Zsh to rebuild its completion cache
+autoload -Uz compinit && compinit
