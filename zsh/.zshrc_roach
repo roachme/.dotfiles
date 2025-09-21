@@ -1,9 +1,11 @@
 # oh-my-zsh
 bindkey -M viins 'jk' vi-cmd-mode # map jk to Esc
 
+alias asdf="setxkbmap -layout 'real-prog-dvorak,ru' -option grp:lwin_toggle"
+
 # Desktop relative stuff
 if [ "$XDG_CURRENT_DESKTOP" = "i3" ]; then
-    setxkbmap -layout "real-prog-dvorak,ru" -option grp:lwin_toggle
+    asdf
 
     # Super cool keyboard stuffs.
     # Required for x applications
@@ -22,6 +24,8 @@ alias vim="nvim"
 
 alias aoeu="setxkbmap -layout "us,ru" -option grp:lwin_toggle"
 alias browser="$(which /usr/bin/thorium-browser)"
+alias dir="ls"
+alias ed='$VIM'
 
 
 
