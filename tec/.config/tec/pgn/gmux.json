@@ -22,6 +22,12 @@
         "link": "https://github.com/roachme/tec-pgm.git"
       },
       {
+        "name": "meta",
+        "branch": "master",
+        "commitpatt": "[ID] PART: MSG",
+        "link": "https://github.com/roachme/tec-meta.git"
+      },
+      {
         "name": "arch",
         "branch": "master",
         "commitpatt": "[ID] PART: MSG",
