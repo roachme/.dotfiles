@@ -2,8 +2,8 @@
 	editor = nvim
 
 [user]
-	name = roachme
-    email = qcockroach6@gmail.com
+	name = Amonov
+	email = kh.amonov@yadro.com
 
 [init]
 	defaultBranch = master
