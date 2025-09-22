@@ -46,7 +46,7 @@ if [ -z "$(ps aux | grep 'ssh-agent -s' | grep -v grep | awk '{print $11}')" ]; 
     eval $(ssh-agent -s)
 fi
 
-[ -f ~/.ssh/yadro ] && ssh-add -q ~/.ssh/yadro
+[ -f ~/.ssh/yadro ] && ssh-add -q ~/.ssh/work
 [ -f ~/.ssh/personal ] && ssh-add -q ~/.ssh/personal
 
 # fzf help functions
