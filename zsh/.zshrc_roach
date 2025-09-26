@@ -1,7 +1,12 @@
 # oh-my-zsh
 bindkey -M viins 'jk' vi-cmd-mode # map jk to Esc
 
+alias dir="ls"
+alias ed="$VIM"
+alias vim="nvim"
+alias aoeu="setxkbmap -layout 'us,ru' -option grp:lwin_toggle"
 alias asdf="setxkbmap -layout 'real-prog-dvorak,ru' -option grp:lwin_toggle"
+alias cb="xclip -selection clipboard < " # Copy file content to clipboard
 
 # Desktop relative stuff
 if [ "$XDG_CURRENT_DESKTOP" = "i3" ]; then
@@ -20,16 +25,9 @@ fi
 export MINICOM="-c on"
 alias minicom="minicom roach_dft"
 export PATH=$PATH:$HOME/.local/bin:/usr/local/go/bin
-alias vim="nvim"
-
-alias aoeu="setxkbmap -layout "us,ru" -option grp:lwin_toggle"
-alias browser="$(which /usr/bin/thorium-browser)"
-alias dir="ls"
-alias ed='$VIM'
 
 
 
-source $HOME/workspace/.pgn/gmux/tec/tec
 
 
 # luaver
@@ -37,16 +35,17 @@ source $HOME/workspace/.pgn/gmux/tec/tec
 [ -s ~/.luaver/completions/luaver.bash ] && . ~/.luaver/completions/luaver.bash
 
 export EDITOR="$(which nvim)"
-export PATH=$PATH:/home/roach/.cargo/bin
+export PATH=$PATH:$HOME/.cargo/bin
 
 
+# Start ssh agent if needed
 # roach hotfix for ssh agent&keys
 # HOTFIX: find a better
 if [ -z "$(ps aux | grep 'ssh-agent -s' | grep -v grep | awk '{print $11}')" ]; then
     eval $(ssh-agent -s)
 fi
 
-[ -f ~/.ssh/yadro ] && ssh-add -q ~/.ssh/work
+[ -f ~/.ssh/work ] && ssh-add -q ~/.ssh/work
 [ -f ~/.ssh/personal ] && ssh-add -q ~/.ssh/personal
 
 # fzf help functions
@@ -60,10 +59,12 @@ export PASSWORD_STORE_ENABLE_EXTENSIONS=true
 export PASSWORD_STORE_EXTENSIONS_DIR=$XDG_DATA_HOME/password-store/.extensions
 export BASH_COMPLETION_USER_DIR=$XDG_DATA_HOME/bash-completion/completions
 
-# Copy file content to clipboard
-alias cb="xclip -selection clipboard < "
+
 
 fpath=($HOME/.zsh/completions $fpath)
+
+source $HOME/workspace/.pgn/gmux/tec/tec
+
 
 
 # Tell Zsh to rebuild its completion cache

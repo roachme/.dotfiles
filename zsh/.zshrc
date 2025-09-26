@@ -108,7 +108,3 @@ source ~/.zsh_profile
 
 # roach settings
 source ~/.zshrc_roach
-
-alias mutt="neomutt"
-
-[ -f "/home/roach/.ghcup/env" ] && . "/home/roach/.ghcup/env" # ghcup-env
