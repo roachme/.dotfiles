@@ -1,0 +1,51 @@
+#!/bin/env bash
+
+COMMAND="$1"
+
+function dev_check()
+{
+    echo "check list of utils are used are installed"
+}
+
+function dev_install()
+{
+    echo "install list of utils are used are installed"
+}
+
+function dev_help()
+{
+    cat << EOF
+Usage: dev devname [OPTION]... [COMMAND]
+
+    Commands:
+      help      - show this help message and exit
+      mon       - setup monitors
+      sound     - setup speaker (and mic)
+EOF
+}
+
+function dev_mon()
+{
+    MOMITOR_COUNT="$(xrandr | grep -wc connected)"
+
+    if [ "$MOMITOR_COUNT" -eq 2 ]; then
+        echo "Switch to external monitor"
+        xrandr --output HDMI-1 --primary
+        xrandr --output eDP-1 --off
+    else
+        echo "Switch back to main monitor"
+        xrandr --output eDP-1 --auto
+    fi
+}
+
+function dev_speaker()
+{
+    echo "WARNING: Find yer speaker first. Then use command below"
+    pactl set-default-sink alsa_output.usb-Logitech_Logi_USB_Headset_000000000000-00.analog-stereo
+}
+
+if [ -z "$COMMAND" ]; then
+    dev_mon "$@"
+elif [ "$COMMAND" = "help" ]; then
+    dev_help "$@"
+fi
