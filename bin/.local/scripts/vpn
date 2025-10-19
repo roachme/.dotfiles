@@ -27,6 +27,7 @@ Usage: vpn COMMAND
       ls        list openvpn instances and configs
       start     start openvpn instance
       stop      stop openvpn instance
+      switch    stop running VPNs and start specified one
 EOF
 }
 
