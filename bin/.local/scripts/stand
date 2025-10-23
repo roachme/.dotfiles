@@ -1,0 +1,14 @@
+#!/bin/env bash
+
+FILE="$1"
+
+function die() {
+    return 0
+}
+
+if [ -z "$FILE" ]; then
+    echo "file not passed"
+    exit 1
+fi
+
+ssh stand "scp veg1:$FILE ~/"

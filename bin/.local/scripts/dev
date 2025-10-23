@@ -30,6 +30,7 @@ function dev_mon()
 
     if [ "$MOMITOR_COUNT" -eq 2 ]; then
         echo "Switch to external monitor"
+        xrandr --output HDMI-1 --auto # turn it on just in case
         xrandr --output HDMI-1 --primary
         xrandr --output eDP-1 --off
     else
