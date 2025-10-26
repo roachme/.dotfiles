@@ -1,0 +1,24 @@
+#!/bin/env bash
+
+COMMAND="$1"
+
+function hustle_help() {
+    cat << EOF
+Usage: hustle COMMAND
+
+    List of commands:
+      help      show help message and exit
+      rdp       connect by RDP
+      ssh       connect by ssh
+EOF
+}
+
+if [ -z "$COMMAND" ]; then
+    hustle_help "$@"
+elif [ "$COMMAND" = "ssh" ]; then
+    ssh hustle
+elif [ "$COMMAND" = "rdp" ]; then
+    xfreerdp3 /f /v:192.168.191.246 /u:user /p:hurshedhurshed /cert:ignore
+else
+    hustle_help "$@"
+fi
