@@ -108,3 +108,6 @@ source ~/.zsh_profile
 
 # roach settings
 source ~/.zshrc_roach
+
+# opencode
+export PATH=/home/roach/.opencode/bin:$PATH

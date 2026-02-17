@@ -7,6 +7,7 @@ alias vim="nvim"
 alias aoeu="setxkbmap -layout 'us,ru' -option grp:lwin_toggle"
 alias asdf="setxkbmap -layout 'real-prog-dvorak,ru' -option grp:lwin_toggle"
 alias cb="xclip -selection clipboard " # Copy file content to clipboard
+alias lg=lazygit
 
 # Desktop relative stuff
 if [ "$XDG_CURRENT_DESKTOP" = "i3" ]; then
@@ -63,7 +64,7 @@ export BASH_COMPLETION_USER_DIR=$XDG_DATA_HOME/bash-completion/completions
 
 fpath=($HOME/.zsh/completions $fpath)
 
-source $HOME/workspace/.pgn/gmux/tec/tec
+source $HOME/utils/tec/tec.sh
 
 
 
