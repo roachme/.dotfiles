@@ -1,0 +1,10 @@
+{
+    "repos": [
+        { "name": "gmux", "link": "https://github.com/roachme/tec-gmux.git" },
+        { "name": "find", "link": "https://github.com/roachme/tec-find.git" },
+        { "name": "link", "link": "https://github.com/roachme/tec-link.git" },
+        { "name": "fsck", "link": "https://github.com/roachme/tec-fsck.git" },
+        { "name": "note", "link": "https://github.com/roachme/tec-note.git" },
+        { "name": "meta", "link": "https://github.com/roachme/tec-meta.git" }
+    ]
+}

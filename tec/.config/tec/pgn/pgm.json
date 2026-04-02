@@ -1,8 +1,0 @@
-{
-    "repos": [
-        { "link": "https://github.com/roachme/tec-gmux.git" },
-        { "link": "https://github.com/roachme/tec-find.git" },
-        { "link": "https://github.com/roachme/tec-link.git" },
-        { "link": "https://github.com/roachme/tec-fsck.git" }
-    ]
-}
