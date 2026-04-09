@@ -1,11 +1,11 @@
 {
   "tec": {
     "prefix": "TMAN",
-    "branchpatt": "TYPE/PREFIX-ID_DESC_DATE",
+    "branchpatt": "DESC_DATE",
     "repos": [
       {
         "name": "tec",
-        "branch": "master",
+        "branch": "develop",
         "commitpatt": "[ID] PART: MSG",
         "link": "https://github.com/roachme/tec.git"
       },
@@ -16,14 +16,14 @@
         "link": "https://github.com/roachme/tec-gmux.git"
       },
       {
-        "name": "pgm",
+        "name": "nine",
         "branch": "master",
         "commitpatt": "[ID] PART: MSG",
-        "link": "https://github.com/roachme/tec-pgm.git"
+        "link": "https://github.com/roachme/tec-nine.git"
       },
       {
         "name": "meta",
-        "branch": "master",
+        "branch": "main",
         "commitpatt": "[ID] PART: MSG",
         "link": "https://github.com/roachme/tec-meta.git"
       },
@@ -47,32 +47,21 @@
       }
     ]
   },
-  "lab": {
-    "prefix": "LAB",
-    "branchpatt": "TYPE/PREFIX-ID_DESC_DATE",
-    "repos": [
-      {
-        "name": "demo",
-        "branch": "develop",
-        "commitpatt": "[ID] PART: MSG",
-        "link": "https://github.com/roachme/demo.git"
-      }
-    ]
-  },
 
-  "prj1": {
+  "test": {
     "prefix": "TEST",
     "branchpatt": "TYPE/PREFIX-ID_DESC_DATE",
     "repos": [
       {
         "name": "demo",
-        "branch": "develop",
+        "branch": "master",
         "commitpatt": "[ID] PART: MSG",
         "link": "https://github.com/roachme/demo.git",
         "modules": [
           {
-            "name": "pman",
-            "branch": "develop"
+            "name": "demo-sub",
+            "branch": "main",
+            "link": "https://github.com/roachme/demo-sub.git"
           }
         ]
       }
