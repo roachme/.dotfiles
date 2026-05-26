@@ -16,12 +16,28 @@ vpn_help() {
 Usage: vpn COMMAND
 
     Commands:
+      fix       NetworkManager DNS hotfix
       help      show this help message and exit
       ls        list openvpn instances and configs
+      ping      Ping to check internet connection
       start     start openvpn instance
       stop      stop openvpn instance
       switch    stop running VPNs and start specified one
 EOF
+}
+
+vpn_fix() {
+    sudo cp /etc/resolv.conf.bak /etc/resolv.conf
+    sudo systemctl restart NetworkManager
+}
+
+vpn_ping() {
+    local hostname="$1"
+
+    if [ -z "$hostname" ]; then
+        hostname="ya.ru"
+    fi
+    ping "$hostname"
 }
 
 vpn_ls() {
@@ -66,6 +82,8 @@ vpn() {
     case "$cmd" in
         ls)          shift; vpn_ls "$@" ;;
         help)        shift; vpn_help "$@" ;;
+        fix)         shift; vpn_fix "$@" ;;
+        ping)        shift; vpn_ping "$@" ;;
         start)       shift; vpn_start "$@" ;;
         stop)        shift; vpn_stop "$@" ;;
         switch)      shift; vpn_switch "$@" ;;
