@@ -36,14 +36,17 @@ export PATH=$PATH:$HOME/.local/bin:/usr/local/go/bin
 [ -s ~/.luaver/completions/luaver.bash ] && . ~/.luaver/completions/luaver.bash
 
 export EDITOR="$(which nvim)"
-export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/.cargo/bin:$HOME/.bun/bin
 
 
 # Start ssh agent if needed
 # roach hotfix for ssh agent&keys
 # HOTFIX: find a better
-if [ -z "$(ps aux | grep 'ssh-agent -s' | grep -v grep | awk '{print $11}')" ]; then
-    eval $(ssh-agent -s)
+#if [ -z "$(ps aux | grep 'ssh-agent -s' | grep -v grep | awk '{print $11}')" ]; then
+#    eval $(ssh-agent -s)
+#fi
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval $(ssh-agent -s) > /dev/null
 fi
 
 [ -f ~/.ssh/work ] && ssh-add -q ~/.ssh/work
@@ -64,9 +67,4 @@ export BASH_COMPLETION_USER_DIR=$XDG_DATA_HOME/bash-completion/completions
 
 fpath=($HOME/.zsh/completions $fpath)
 
-source $HOME/utils/tec/tec.sh
-
-
-
-# Tell Zsh to rebuild its completion cache
-autoload -Uz compinit && compinit
+source $HOME/utils/tec/shell/tec.sh

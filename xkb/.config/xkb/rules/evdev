@@ -1,0 +1,18 @@
+! model = symbols
+! layout = symbols
+! variant = symbols
+! option = symbols
+
+! include %S/evdev
+
+! model
+* = pc105
+
+! layout
+* = us
+real-prog-dvorak = real-prog-dvorak
+
+! variant
+basic =
+
+! option

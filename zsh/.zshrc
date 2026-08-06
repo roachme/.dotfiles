@@ -108,6 +108,10 @@ source ~/.zsh_profile
 
 # roach settings
 source ~/.zshrc_roach
+source /home/roach/workspace/.tec/pgn/gmux/tec/shell/tec.sh
 
-# opencode
-export PATH=/home/roach/.opencode/bin:$PATH
+PATH="/home/roach/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/roach/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/roach/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/roach/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/roach/perl5"; export PERL_MM_OPT;

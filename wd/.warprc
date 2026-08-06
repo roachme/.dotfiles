@@ -1,7 +1,17 @@
 
+arch:~/.local/lib/tec/pgn/arch
 book:~/trash/roach/books/tech
+capwap:~/utils/capwap
+conv:~/.local/lib/tec/pgn/conv
 d:~/Downloads
-fsck:~/.local/lib/tman/pgn/fsck
+e:~/work/step2/gnb-du-proxy/gnb-du-e
+fsck:~/.local/lib/tec/pgn/fsck
 gmux:~/.local/lib/tec/pgn/gmux
-tec:~/workspace/.pgn/gmux/tec
+nine:~/.local/lib/tec/pgn/nine
+pgn:~/.local/lib/tec/pgn
+s:~/work/step2/gnb-du-proxy/gnb-du-s
+tecdev:~/workspace/.tec/pgn/gmux/tec
+tec:~/utils/tec
 tr:~/trash
+t:~/workspace/.tec/pgn/gmux/tec
+w:~/work/gnb-du-proxy

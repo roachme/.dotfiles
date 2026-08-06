@@ -18,7 +18,7 @@ if [ -z "$COMMAND" ]; then
 elif [ "$COMMAND" = "ssh" ]; then
     ssh hustle
 elif [ "$COMMAND" = "rdp" ]; then
-    xfreerdp3 /f /v:192.168.191.246 /u:user /p:hurshedhurshed /cert:ignore
+    xfreerdp3 /f /v:192.168.191.246 /u:user /p:hurshedhurshed /cert:ignore /sec:rdp
 else
     hustle_help "$@"
 fi

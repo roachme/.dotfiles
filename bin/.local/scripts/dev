@@ -12,6 +12,22 @@ function dev_install()
     echo "install list of utils are used are installed"
 }
 
+function dev_switch()
+{
+    local mode="$1"
+
+    if [ "$mode" = "--help" ] || [ "$mode" = "help" ] || [ "$mode" = "-h" ]; then
+        echo "Usage: $PROGRAM switch [4k]"
+    elif [ "$mode" = "4k" ] || [ "$mode" = "4K" ]; then
+        echo "> set up 4K mode"
+        xrandr --output HDMI-1 --mode 3840x2160 --rate 60
+    else
+        echo "> get back to normal mode"
+        xrandr --output HDMI-1 --mode 2560x1440 --rate 120
+    fi
+}
+
+
 function dev_help()
 {
     cat << EOF
@@ -45,8 +61,18 @@ function dev_speaker()
     pactl set-default-sink alsa_output.usb-Logitech_Logi_USB_Headset_000000000000-00.analog-stereo
 }
 
+function dev_sync()
+{
+    rsync -rP work:~/share/ $HOME/share
+}
+
 if [ -z "$COMMAND" ]; then
     dev_mon "$@"
 elif [ "$COMMAND" = "help" ]; then
     dev_help "$@"
+elif [ "$COMMAND" = "sync" ]; then
+    dev_sync "$@"
+elif [ "$COMMAND" = "switch" ]; then
+    shift 1
+    dev_switch "$@"
 fi

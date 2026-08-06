@@ -20,7 +20,9 @@ Usage: vpn COMMAND
       help      show this help message and exit
       ls        list openvpn instances and configs
       ping      Ping to check internet connection
+      restart   Restart VPN service
       start     start openvpn instance
+      status    Show VPN status
       stop      stop openvpn instance
       switch    stop running VPNs and start specified one
 EOF
@@ -40,36 +42,50 @@ vpn_ping() {
     ping "$hostname"
 }
 
-vpn_ls() {
-    #echo "List running openvpn instances"
-    #sudo systemctl --type=service  | grep openvpn
+vpn_status() {
+    local cfg="$1"
 
-    #echo
+    if [ -z "$cfg" ]; then
+        cfg="awg0"
+    fi
+    sudo systemctl status "awg-quick@${cfg}"
+}
+
+vpn_ls() {
     echo "List available configs"
-    #ls /etc/openvpn/client/*.conf | tr -s ' ' | tr ' ' '\n'
-    sudo ls /etc/wireguard/
+    for cfg in $(sudo ls /etc/amnezia/amneziawg); do
+        if [[ "$cfg" == *.conf ]]; then
+            echo "  ${cfg%.conf}"
+        fi
+    done
 }
 
 vpn_start() {
     local cfg="$1"
 
     if [ -z "$cfg" ]; then
-        cfg="Lithuania"
+        cfg="awg0"
     fi
 
     #_config_exist "$cfg"
-    sudo wg-quick up "$cfg"
+    #sudo wg-quick up "$cfg"
+    sudo systemctl start "awg-quick@${cfg}"
 }
 
 vpn_stop() {
     local cfg="$1"
 
     if [ -z "$cfg" ]; then
-        cfg="Lithuania"
+        cfg="awg0"
     fi
 
     #_config_exist "$cfg"
-    sudo wg-quick down "$cfg"
+    #sudo wg-quick down "$cfg"
+    sudo systemctl stop "awg-quick@${cfg}"
+}
+
+vpn_restart() {
+    sudo systemctl restart awg-quick@awg0
 }
 
 vpn_switch() {
@@ -84,8 +100,10 @@ vpn() {
         help)        shift; vpn_help "$@" ;;
         fix)         shift; vpn_fix "$@" ;;
         ping)        shift; vpn_ping "$@" ;;
+        status)      shift; vpn_status "$@" ;;
         start)       shift; vpn_start "$@" ;;
         stop)        shift; vpn_stop "$@" ;;
+        restart)     shift; vpn_restart "$@" ;;
         switch)      shift; vpn_switch "$@" ;;
         *)           die "'$cmd': no such vpn command"
     esac

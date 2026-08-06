@@ -235,3 +235,6 @@ bindsym $mod+m move workspace to output left
 # Suspend
 bindsym $mod+Shift+period exec systemctl suspend
 
+
+# 4K scaling
+exec_always --no-startup-id xrdb -merge ~/.Xresources[citation:1][citation:8]

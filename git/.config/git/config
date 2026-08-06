@@ -2,8 +2,8 @@
 	editor = nvim
 
 [user]
-	name = Amonov
-	email = kh.amonov@yadro.com
+	name = roachme
+	email = qcockroach6@gmail.com
 
 [init]
 	defaultBranch = master
@@ -17,3 +17,10 @@
 
 #[includeIf "gitdir:~/work/"]
 #	path = ~/work/.gitconfig
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = true
