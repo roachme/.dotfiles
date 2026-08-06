@@ -1,9 +1,12 @@
 {
     "repos": [
-        { "name": "gmux", "branch": "develop", "link": "https://github.com/roachme/tec-gmux.git" },
+        { "name": "gmux", "branch": "master", "link": "https://github.com/roachme/tec-gmux.git" },
         { "name": "find", "branch": "master", "link": "https://github.com/roachme/tec-find.git" },
-        { "name": "link", "branch": "develop", "link": "https://github.com/roachme/tec-link.git" },
+        { "name": "link", "branch": "master", "link": "https://github.com/roachme/tec-link.git" },
         { "name": "fsck", "branch": "master", "link": "https://github.com/roachme/tec-fsck.git" },
-        { "name": "note", "branch": "master", "link": "https://github.com/roachme/tec-note.git" }
+        { "name": "note", "branch": "master", "link": "https://github.com/roachme/tec-note.git" },
+        { "name": "conv", "branch": "master", "link": "https://github.com/roachme/tec-conv.git" },
+        { "name": "nine", "branch": "master", "link": "https://github.com/roachme/tec-nine.git" },
+        { "name": "tar", "branch": "master", "link": "https://github.com/roachme/tec-tar.git" }
     ]
 }

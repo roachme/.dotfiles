@@ -7,43 +7,43 @@
         "name": "tec",
         "branch": "develop",
         "commitpatt": "[ID] PART: MSG",
-        "link": "https://github.com/roachme/tec.git"
+        "link": "git@github.com:roachme/tec.git"
       },
       {
         "name": "gmux",
         "branch": "master",
         "commitpatt": "[ID] PART: MSG",
-        "link": "https://github.com/roachme/tec-gmux.git"
+        "link": "git@github.com:roachme/tec-gmux.git"
       },
       {
         "name": "nine",
         "branch": "master",
         "commitpatt": "[ID] PART: MSG",
-        "link": "https://github.com/roachme/tec-nine.git"
+        "link": "git@github.com:roachme/tec-nine.git"
       },
       {
         "name": "meta",
         "branch": "main",
         "commitpatt": "[ID] PART: MSG",
-        "link": "https://github.com/roachme/tec-meta.git"
+        "link": "git@github.com:roachme/tec-meta.git"
       },
       {
         "name": "arch",
         "branch": "master",
         "commitpatt": "[ID] PART: MSG",
-        "link": "https://github.com/roachme/tec-arch.git"
+        "link": "git@github.com:roachme/tec-arch.git"
       },
       {
         "name": "note",
         "branch": "master",
         "commitpatt": "[ID] PART: MSG",
-        "link": "https://github.com/roachme/tec-note.git"
+        "link": "git@github.com:roachme/tec-note.git"
       },
       {
         "name": "find",
         "branch": "master",
         "commitpatt": "[ID] PART: MSG",
-        "link": "https://github.com/roachme/tec-find.git"
+        "link": "git@github.com:roachme/tec-find.git"
       }
     ]
   },
@@ -56,12 +56,12 @@
         "name": "demo",
         "branch": "master",
         "commitpatt": "[ID] PART: MSG",
-        "link": "https://github.com/roachme/demo.git",
+        "link": "git@github.com:roachme/demo.git",
         "modules": [
           {
             "name": "demo-sub",
             "branch": "main",
-            "link": "https://github.com/roachme/demo-sub.git"
+            "link": "git@github.com:roachme/demo-sub.git"
           }
         ]
       }
