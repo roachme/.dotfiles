@@ -28,16 +28,34 @@
         "link": "git@github.com:roachme/tec-meta.git"
       },
       {
-        "name": "arch",
+        "name": "tar",
         "branch": "master",
         "commitpatt": "[ID] PART: MSG",
-        "link": "git@github.com:roachme/tec-arch.git"
+        "link": "git@github.com:roachme/tec-tar.git"
+      },
+      {
+        "name": "fsck",
+        "branch": "master",
+        "commitpatt": "[ID] PART: MSG",
+        "link": "git@github.com:roachme/tec-fsck.git"
+      },
+      {
+        "name": "link",
+        "branch": "master",
+        "commitpatt": "[ID] PART: MSG",
+        "link": "git@github.com:roachme/tec-link.git"
       },
       {
         "name": "note",
         "branch": "master",
         "commitpatt": "[ID] PART: MSG",
         "link": "git@github.com:roachme/tec-note.git"
+      },
+      {
+        "name": "conv",
+        "branch": "master",
+        "commitpatt": "[ID] PART: MSG",
+        "link": "git@github.com:roachme/tec-conv.git"
       },
       {
         "name": "find",
