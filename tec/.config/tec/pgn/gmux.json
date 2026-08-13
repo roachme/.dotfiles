@@ -2,65 +2,66 @@
   "tec": {
     "prefix": "TMAN",
     "branchpatt": "DESC_DATE",
+    "commitpatt": "PART: MSG",
     "repos": [
       {
         "name": "tec",
         "branch": "develop",
-        "commitpatt": "[ID] PART: MSG",
+        "commitpatt": "PART: MSG",
         "link": "git@github.com:roachme/tec.git"
       },
       {
         "name": "gmux",
         "branch": "master",
-        "commitpatt": "[ID] PART: MSG",
+        "commitpatt": "PART: MSG",
         "link": "git@github.com:roachme/tec-gmux.git"
       },
       {
         "name": "nine",
         "branch": "master",
-        "commitpatt": "[ID] PART: MSG",
+        "commitpatt": "PART: MSG",
         "link": "git@github.com:roachme/tec-nine.git"
       },
       {
         "name": "meta",
         "branch": "main",
-        "commitpatt": "[ID] PART: MSG",
+        "commitpatt": "PART: MSG",
         "link": "git@github.com:roachme/tec-meta.git"
       },
       {
         "name": "tar",
         "branch": "master",
-        "commitpatt": "[ID] PART: MSG",
+        "commitpatt": "PART: MSG",
         "link": "git@github.com:roachme/tec-tar.git"
       },
       {
         "name": "fsck",
         "branch": "master",
-        "commitpatt": "[ID] PART: MSG",
+        "commitpatt": "PART: MSG",
         "link": "git@github.com:roachme/tec-fsck.git"
       },
       {
         "name": "link",
         "branch": "master",
-        "commitpatt": "[ID] PART: MSG",
+        "commitpatt": "PART: MSG",
         "link": "git@github.com:roachme/tec-link.git"
       },
       {
         "name": "note",
         "branch": "master",
-        "commitpatt": "[ID] PART: MSG",
+        "commitpatt": "PART: MSG",
         "link": "git@github.com:roachme/tec-note.git"
       },
       {
         "name": "conv",
         "branch": "master",
-        "commitpatt": "[ID] PART: MSG",
+        "commitpatt": "PART: MSG",
         "link": "git@github.com:roachme/tec-conv.git"
       },
       {
         "name": "find",
         "branch": "master",
-        "commitpatt": "[ID] PART: MSG",
+        "commitpatt": "PART: MSG",
         "link": "git@github.com:roachme/tec-find.git"
       }
     ]
