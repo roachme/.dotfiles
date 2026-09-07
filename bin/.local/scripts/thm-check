@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# Diagnose "OpenVPN connected but can't reach TryHackMe lab box" issues.
+# Usage: ./thm-check.sh <lab-ip> [tun-interface]
+
+set -uo pipefail
+
+TARGET="${1:-}"
+TUNIF="${2:-tun0}"
+
+if [[ -z "$TARGET" ]]; then
+    echo "Usage: $0 <lab-ip> [tun-interface]" >&2
+    exit 1
+fi
+
+hr() { printf '%s\n' "----- $1 -----"; }
+
+hr "openvpn process"
+pgrep -af openvpn || echo "no openvpn process found"
+
+hr "tunnel interface ($TUNIF)"
+if ip addr show "$TUNIF" &>/dev/null; then
+    ip addr show "$TUNIF"
+else
+    echo "!! $TUNIF does not exist — VPN may not be up yet, or interface name differs"
+fi
+
+hr "routes on $TUNIF"
+ip route show | grep "$TUNIF" || echo "!! no routes found on $TUNIF"
+
+hr "route the kernel would actually use for $TARGET"
+ip route get "$TARGET"
+
+hr "other tunnel-like interfaces (possible conflicting VPN)"
+ip -brief link show | awk '{print $1}' | grep -Ev "^(lo|eth|en|wl|docker)" | grep -v "^${TUNIF}$" \
+    | while read -r ifc; do
+        echo "$ifc:"
+        ip addr show "$ifc" | sed 's/^/  /'
+      done
+if ! ip -brief link show | awk '{print $1}' | grep -Ev "^(lo|eth|en|wl|docker)" | grep -qv "^${TUNIF}$"; then
+    echo "(none found)"
+fi
+
+hr "policy routing rules (ip rule)"
+ip rule show
+
+hr "ping test"
+ping -c 4 -W 2 "$TARGET"
