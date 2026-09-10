@@ -34,10 +34,22 @@ function dev_help()
 Usage: dev devname [OPTION]... [COMMAND]
 
     Commands:
+      one       - one monitor (switch to external if available)
+      two       - two monitors (enable main and external if available)
       help      - show this help message and exit
       mon       - setup monitors
       sound     - setup speaker (and mic)
 EOF
+}
+
+function dev_one()
+{
+    echo "under development"
+}
+
+function dev_two()
+{
+    echo "under development"
 }
 
 function dev_mon()
@@ -69,6 +81,10 @@ function dev_sync()
 
 if [ -z "$COMMAND" ]; then
     dev_mon "$@"
+elif [ "$COMMAND" = "one" ]; then
+    dev_one "$@"
+elif [ "$COMMAND" = "two" ]; then
+    dev_two "$@"
 elif [ "$COMMAND" = "help" ]; then
     dev_help "$@"
 elif [ "$COMMAND" = "sync" ]; then
