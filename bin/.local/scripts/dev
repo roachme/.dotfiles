@@ -36,6 +36,7 @@ Usage: dev devname [OPTION]... [COMMAND]
     Commands:
       one       - one monitor (switch to external if available)
       two       - two monitors (enable main and external if available)
+      main      - turn off external monitors, enable laptop monitor only
       help      - show this help message and exit
       mon       - setup monitors
       sound     - setup speaker (and mic)
@@ -44,12 +45,36 @@ EOF
 
 function dev_one()
 {
-    echo "under development"
+    if xrandr | grep -qw "^HDMI-1 connected"; then
+        echo "> one monitor: switching to external (HDMI-1)"
+        xrandr --output HDMI-1 --auto --primary
+        xrandr --output eDP-1 --off
+    else
+        echo "> one monitor: external not connected, using main (eDP-1)"
+        xrandr --output eDP-1 --auto --primary
+    fi
 }
 
 function dev_two()
 {
-    echo "under development"
+    if ! xrandr | grep -qw "^HDMI-1 connected"; then
+        echo "> two monitors: external (HDMI-1) not connected"
+        return 1
+    fi
+
+    echo "> two monitors: enabling main (eDP-1) and external (HDMI-1)"
+    xrandr --output eDP-1 --auto --primary
+    xrandr --output HDMI-1 --auto --right-of eDP-1
+}
+
+function dev_main()
+{
+    xrandr --output eDP-1 --auto --primary
+
+    while read -r out; do
+        [ "$out" = "eDP-1" ] && continue
+        xrandr --output "$out" --off
+    done < <(xrandr | grep -w connected | awk '{print $1}')
 }
 
 function dev_mon()
@@ -80,11 +105,13 @@ function dev_sync()
 }
 
 if [ -z "$COMMAND" ]; then
-    dev_mon "$@"
+    dev_main "$@"
 elif [ "$COMMAND" = "one" ]; then
     dev_one "$@"
 elif [ "$COMMAND" = "two" ]; then
     dev_two "$@"
+elif [ "$COMMAND" = "main" ]; then
+    dev_main "$@"
 elif [ "$COMMAND" = "help" ]; then
     dev_help "$@"
 elif [ "$COMMAND" = "sync" ]; then
