@@ -108,7 +108,6 @@ source ~/.zsh_profile
 
 # roach settings
 source ~/.zshrc_roach
-source /home/roach/workspace/.tec/pgn/gmux/tec/shell/tec.sh
 
 PATH="/home/roach/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/roach/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
