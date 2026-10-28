@@ -68,3 +68,6 @@ export BASH_COMPLETION_USER_DIR=$XDG_DATA_HOME/bash-completion/completions
 fpath=($HOME/.zsh/completions $fpath)
 
 source $HOME/.tecrc
+
+# oh-my-zsh wd plugin
+export WD_CONFIG=$HOME/.config/wd/warprc
