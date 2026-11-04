@@ -9,6 +9,9 @@ die() {
 
 _config_exist() {
     local cfg="$1"
+    local base="/etc/amnezia/amneziawg"
+
+    sudo test -f "${base}/${cfg}.conf"
 }
 
 vpn_help() {
@@ -20,6 +23,7 @@ Usage: vpn COMMAND
       help      show this help message and exit
       ls        list openvpn instances and configs
       ping      Ping to check internet connection
+      ps        Show all running VPNs
       restart   Restart VPN service
       start     start openvpn instance
       status    Show VPN status
@@ -67,7 +71,11 @@ vpn_start() {
         cfg="awg0"
     fi
 
-    #_config_exist "$cfg"
+    if ! _config_exist "$cfg"; then
+        echo "${cfg}: no such config" >&2
+        exit 1
+    fi
+
     #sudo wg-quick up "$cfg"
     sudo systemctl start "awg-quick@${cfg}"
 }
@@ -79,7 +87,11 @@ vpn_stop() {
         cfg="awg0"
     fi
 
-    #_config_exist "$cfg"
+    if ! _config_exist "$cfg"; then
+        echo "${cfg}: no such config" >&2
+        exit 1
+    fi
+
     #sudo wg-quick down "$cfg"
     sudo systemctl stop "awg-quick@${cfg}"
 }
@@ -92,6 +104,10 @@ vpn_switch() {
     return 0;
 }
 
+vpn_ps() {
+    sudo systemctl | grep -F 'awg-quick@' | tr -s ' ' | cut -f 2,3 -d ' '
+}
+
 vpn() {
     local cmd=
     [ $# -eq 0 ] && set -- "ls"; cmd="$1"
@@ -100,6 +116,7 @@ vpn() {
         help)        shift; vpn_help "$@" ;;
         fix)         shift; vpn_fix "$@" ;;
         ping)        shift; vpn_ping "$@" ;;
+        ps)          shift; vpn_ps "$@" ;;
         status)      shift; vpn_status "$@" ;;
         start)       shift; vpn_start "$@" ;;
         stop)        shift; vpn_stop "$@" ;;
